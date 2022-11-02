@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Database Web App - Spring and Hibernate">
+        
+    <wb-module deploy-name="DatabaseWebApp_SpringMVC-Hibernate">
+                
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+                
         <property name="context-root" value="Database_Web_App_-_Spring_and_Hibernate"/>
-        <property name="java-output-path" value="/Database Web App - Spring and Hibernate/build/classes"/>
+                
+        <property name="java-output-path" value="/DatabaseWebApp_SpringMVC-Hibernate/build/classes"/>
+            
     </wb-module>
+    
 </project-modules>
