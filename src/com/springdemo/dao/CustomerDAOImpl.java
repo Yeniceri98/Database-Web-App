@@ -20,7 +20,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private SessionFactory sessionFactory;		// NOT: spring-mvc-crud-demo-servlet.xml'in 45. sayfasındaki beanId
 	
 	@Override
-	@Transactional
+	// @Transactional		// NOT: Service class'ını oluşturunca buradan silip orada tanımladık. CustomerServiceImpl kısmında transaction'ı açıp kapatmak best practice olur
 	public List<Customer> getCustomers() {
 		
 		// Get current hibernate session
@@ -52,6 +52,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	DAO implementasyonlarında kullanılır
 	Spring will automatically register the DAO implementation thanks to component-scanning
 	Spring also provides translation of any JDBC related exceptions
-	
-	
+
+	Controller ---> Service ---> DAO (Project Overview.PNG de görülebilir)
 */

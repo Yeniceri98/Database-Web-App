@@ -5,7 +5,7 @@
   <absolute-ordering />
 
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.jsp</welcome-file>			<!-- NOT: WEBContent altında index.jsp adında welcome page oluşturduk. Programı serverda çalıştırınca ilk önce burayı görür ve o sayfada tanımlanan redirection sayesinde customer/list kısmına gider -->
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 
