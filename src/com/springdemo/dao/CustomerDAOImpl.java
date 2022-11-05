@@ -27,7 +27,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		// Create a query
-		Query<Customer> theQuery = currentSession.createQuery("from Customer", Customer.class);
+		Query<Customer> theQuery = currentSession.createQuery("from Customer ORDER BY lastName", Customer.class);
 		
 		// Execute query and get result list
 		List<Customer> customers = theQuery.getResultList();
@@ -35,6 +35,31 @@ public class CustomerDAOImpl implements CustomerDAO {
 		// Return the results
 		return customers;
 	}
+
+	@Override
+	public void saveCustomer(Customer theCustomer) {
+		
+		// Get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		// Save the customer
+		// currentSession.save(theCustomer);
+		currentSession.saveOrUpdate(theCustomer);		// NOT: Üst satırdaki gibi "save()" veya "update()" metodunu da kullanabilirdik fakat bu şekildeyken customer yoksa save; varsa update eder
+	}
+
+	@Override
+	public Customer getCustomerById(int theId) {
+		
+		// Get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		// Retrive customer from the database
+		Customer theCustomer = currentSession.get(Customer.class, theId);
+		
+		return theCustomer;
+	}
+
+	
 }
 
 /*
@@ -54,4 +79,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 	Spring also provides translation of any JDBC related exceptions
 
 	Controller ---> Service ---> DAO (Project Overview.PNG de görülebilir)
+*/
+/*
+	saveOrUpdate(...)
+	if primary key or id is empty;
+	then INSERT new customer
+	else UPDATE existing customer
 */
