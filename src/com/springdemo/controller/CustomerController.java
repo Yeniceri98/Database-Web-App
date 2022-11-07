@@ -86,13 +86,25 @@ public class CustomerController {
 		return "customer-form";
 	}
 	
-	@GetMapping("/delete")
+	@GetMapping("/delete")		// NOT: Delete işlemi için neden @GetMapping kullandığımızı aşağıdaki QUESTION-ANSWER kısmında açıkladım
 	public String deleteCustomer(@RequestParam("customerId") int theId) {
 		
 		// Delete the customer
 		customerService.deleteCustomer(theId);
 		
-		return "redirect:/customer/list";
+		return "redirect:/customer/list";		// After completing deleting of specific student we need to reload all students again
+	}
+	
+	@GetMapping("/search")
+	public String searchCustomer(@RequestParam("theSearchName") String theSearchName, Model theModel) {
+		
+		// Search customers from the Service
+		List<Customer> theCustomers = customerService.searchCustomer(theSearchName);
+		
+		// Add customers to the Model
+		theModel.addAttribute("customers", theCustomers);
+		
+		return "list-customers";
 	}
 }
 
@@ -128,4 +140,24 @@ public class CustomerController {
 	saveCustomer kısmında tüm fieldları bind ederken @ModelAttribute kullandık
 	showFormForUpdate kısmında ise sadece id üzerinden bind işlemi olduğunu için @RequestParam kullandık
 */ 
+/*
+ 	QUESTION:
+ 	Why are using GET method for update and delete? Why didn't we use @DeleteMapping while deleting the customer?
+ 	
+ 	ANSWER:
+ 	When you are using Spring MVC, the web forms only support GET and POST method
+ 	Hence in this example, we made use of a @GetMapping to handle the delete
+ 	GET and POST is enough for building Spring MVC Web apps
+*/
+/*
+ 	QUESTION:
+ 	When should we use HTTP-DELETE instead of GET/POST?
+ 	
+ 	ANSWER:
+ 	You will use HTTP-DELETE when building REST APIs (Spring REST)
+ 	You may wonder, why not use HTTP-DELETE for Spring MVC web apps?
+ 	When using the default behavior of HTML forms, the HTML forms only support GET and POST. That is the reason we are not using HTTP-DELETE for our Spring MVC web app for CRUD
+ 	However, you can use @DeleteMapping but it is a more manual process and requires more coding. You will need to add support for JavaScript+jQuery+ajax
+*/ 
+
 
