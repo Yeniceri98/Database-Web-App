@@ -84,7 +84,7 @@
 			<div style="clear; both;">
 				<p>
 					<a href="${pageContext.request.contextPath}/customer/list">
-						Show All Customers
+						Customer List Page
 					</a>
 				</p>
 			</div>

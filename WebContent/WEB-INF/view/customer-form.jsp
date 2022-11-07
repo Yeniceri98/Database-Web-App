@@ -56,7 +56,7 @@
 			<div style="clear; both;">
 				<p>
 					<a href="${pageContext.request.contextPath}/customer/list">
-						Go Back to List Page
+						Customer List Page
 					</a>
 				</p>
 			</div>
