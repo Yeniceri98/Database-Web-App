@@ -45,16 +45,32 @@
 						<c:param name="customerId" value="${tempCustomer.id}" />
 					</c:url>
 					
+					<!-- Creating variable for Delete Link -->
+					<c:url var="deleteLink" value="/customer/delete">
+						<c:param name="customerId" value="${tempCustomer.id}" />
+					</c:url>
+					
 					<tr>
 						<td>${tempCustomer.firstName}</td>
 						<td>${tempCustomer.lastName}</td>
 						<td>${tempCustomer.email}</td>
-						<td><a href="${updateLink}">Update</a></td>
+						<td>
+							<a href="${updateLink}">Update</a>
+							|
+							<a 
+								href="${deleteLink}" 
+								onclick="return confirm('Are you sure you want to delete this customer?');">
+								Delete
+							</a>
+						</td>
 						
 						<!-- 
 							Update Linki için variable tanımlamadan direkt 52. satıra alttaki gibi yazıp da yapabilirdik
 							 <a href="${pageContext.request.contextPath}/customer/showFormForUpdate?customerId=${tempCustomer.id}">Update</a>
-						 -->
+						-->
+						<!-- 
+							confirm(...) displays a confirmation popup dialog 
+						-->
 					</tr>
 				</c:forEach>
 			</table>
